@@ -1,7 +1,7 @@
 {
   "name": "@sellside/emitter",
   "description": "Event emitter for node.js projects.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/sellside/emitter",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "sellside/emitter",
@@ -14,7 +14,7 @@
   ],
   "main": "index.js",
   "engines": {
-    "node": ">=4"
+    "node": ">=5"
   },
   "scripts": {
     "test": "mocha"
@@ -27,8 +27,8 @@
     "mocha": "^4.0.1"
   },
   "keywords": [
-    "event",
     "emitter",
+    "event",
     "sellside"
   ],
   "verb": {
