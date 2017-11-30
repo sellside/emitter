@@ -159,7 +159,7 @@ emitter.off('foo');
 emitter.off('foo', fn);
 ```
 
-### [.has](index.js#L239)
+### [.has](index.js#L240)
 
 Returns true if the emitter has registered listeners for `event`.
 
