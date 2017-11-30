@@ -1,4 +1,4 @@
-# sellside [![NPM version](https://img.shields.io/npm/v/sellside.svg?style=flat)](https://www.npmjs.com/package/sellside) [![NPM monthly downloads](https://img.shields.io/npm/dm/sellside.svg?style=flat)](https://npmjs.org/package/sellside) [![NPM total downloads](https://img.shields.io/npm/dt/sellside.svg?style=flat)](https://npmjs.org/package/sellside) [![Linux Build Status](https://img.shields.io/travis/sellside/sellside.svg?style=flat&label=Travis)](https://travis-ci.org/sellside/sellside)
+# emitter [![NPM version](https://img.shields.io/npm/v/@sellside/emitter.svg?style=flat)](https://www.npmjs.com/package/@sellside/emitter) [![NPM monthly downloads](https://img.shields.io/npm/dm/@sellside/emitter.svg?style=flat)](https://npmjs.org/package/@sellside/emitter) [![NPM total downloads](https://img.shields.io/npm/dt/@sellside/emitter.svg?style=flat)](https://npmjs.org/package/@sellside/emitter) [![Linux Build Status](https://img.shields.io/travis/sellside/emitter.svg?style=flat&label=Travis)](https://travis-ci.org/sellside/emitter)
 
 > Event emitter for node.js projects.
 
@@ -9,7 +9,7 @@ Please consider following this project's author, [Jon Schlinkert](https://github
 Install with [npm](https://www.npmjs.com/):
 
 ```sh
-$ npm install --save sellside
+$ npm install --save @sellside/emitter
 ```
 
 ## Attribution
@@ -19,7 +19,7 @@ This is based on [component-emitter](https://github.com/component/emitter), with
 ## Usage
 
 ```js
-var Emitter = require('sellside');
+var Emitter = require('emitter');
 ```
 
 ## API
@@ -215,6 +215,7 @@ $ npm install -g verbose/verb#dev verb-generate-readme && verb
 
 **Jon Schlinkert**
 
+* [linkedin/in/jonschlinkert](https://linkedin.com/in/jonschlinkert)
 * [github/jonschlinkert](https://github.com/jonschlinkert)
 * [twitter/jonschlinkert](https://twitter.com/jonschlinkert)
 
