@@ -98,9 +98,9 @@ class Emitter {
    */
 
   once(event, fn) {
-    const on = (...args) => {
+    const on = function() {
       this.off(event, on);
-      fn.call(this, ...args);
+      fn.apply(this, arguments);
     };
     on.fn = fn;
     this.on(event, on);
@@ -214,8 +214,9 @@ class Emitter {
    * @return {Emitter}
    */
 
-  emit(event, ...args) {
+  emit(event) {
     const listeners = this.listeners(event).slice();
+    const args = [].slice.call(arguments, 1);
     for (const fn of listeners) {
       fn.apply(this, args);
     }
