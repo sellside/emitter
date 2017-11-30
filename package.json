@@ -1,7 +1,7 @@
 {
   "name": "@sellside/emitter",
   "description": "Event emitter for node.js projects.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/sellside/emitter",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "sellside/emitter",
@@ -19,9 +19,6 @@
   "scripts": {
     "test": "mocha"
   },
-  "keywords": [
-    "emitter"
-  ],
   "dependencies": {
     "define-property": "^1.0.0"
   },
@@ -29,6 +26,11 @@
     "gulp-format-md": "^1.0.0",
     "mocha": "^4.0.1"
   },
+  "keywords": [
+    "event",
+    "emitter",
+    "sellside"
+  ],
   "verb": {
     "toc": false,
     "layout": "default",
