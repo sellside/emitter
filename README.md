@@ -12,6 +12,10 @@ Install with [npm](https://www.npmjs.com/):
 $ npm install --save sellside
 ```
 
+## Attribution
+
+This is based on [component-emitter](https://github.com/component/emitter), with some changes and a couple of new methods. That project seems to no longer be maintained.
+
 ## Usage
 
 ```js
