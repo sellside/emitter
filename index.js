@@ -278,7 +278,9 @@ function removeListeners(fn, listeners) {
  */
 
 function mixin(obj) {
+  const ctor = obj.constructor;
   Object.setPrototypeOf(obj, Emitter.prototype);
+  if (ctor) define(obj, 'constructor', ctor);
   return obj;
 }
 
