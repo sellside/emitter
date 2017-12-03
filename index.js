@@ -1,7 +1,5 @@
 'use strict';
 
-const define = require('define-property');
-
 /**
  * Initialize a new `Emitter`.
  *
@@ -282,6 +280,14 @@ function mixin(obj) {
   Object.setPrototypeOf(obj, Emitter.prototype);
   if (ctor) define(obj, 'constructor', ctor);
   return obj;
+}
+
+function define(obj, key, val) {
+  Reflect.defineProperty(obj, key, {
+    configurable: true,
+    writable: true,
+    value: val
+  });
 }
 
 /**
