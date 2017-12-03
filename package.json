@@ -1,7 +1,7 @@
 {
   "name": "@sellside/emitter",
   "description": "Event emitter for node.js projects.",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "homepage": "https://github.com/sellside/emitter",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "sellside/emitter",
