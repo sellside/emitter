@@ -44,6 +44,9 @@ class Emitter {
    * Return the array of registered listeners for `event`.
    *
    * ```js
+   * // all listeners for event "status"
+   * console.log(emitter.listeners('status'));
+   * // all listeners
    * console.log(emitter.listeners());
    * ```
    * @name .listeners
@@ -55,7 +58,7 @@ class Emitter {
   listeners(event) {
     if (!this._listeners) define(this, '_listeners', {});
     if (!this._only) define(this, '_only', {});
-    if (!event) return;
+    if (!event) return this._listeners;
     return this._listeners['$' + event] || (this._listeners['$' + event] = []);
   }
 

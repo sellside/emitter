@@ -60,7 +60,7 @@ obj.on('status', console.log);
 obj.emit('status', 'I emit!');
 ```
 
-### [.listeners](index.js#L55)
+### [.listeners](index.js#L58)
 
 Return the array of registered listeners for `event`.
 
@@ -72,10 +72,13 @@ Return the array of registered listeners for `event`.
 **Example**
 
 ```js
+// all listeners for event "status"
+console.log(emitter.listeners('status'));
+// all listeners
 console.log(emitter.listeners());
 ```
 
-### [.on](index.js#L75)
+### [.on](index.js#L78)
 
 Listen on the given `event` with `fn`.
 
@@ -91,7 +94,7 @@ Listen on the given `event` with `fn`.
 emitter.on('foo', () => 'do stuff');
 ```
 
-### [.once](index.js#L97)
+### [.once](index.js#L100)
 
 Adds an `event` listener that will be invoked a single time then automatically removed.
 
@@ -107,7 +110,7 @@ Adds an `event` listener that will be invoked a single time then automatically r
 emitter.only('once', () => 'do stuff');
 ```
 
-### [.only](index.js#L123)
+### [.only](index.js#L126)
 
 Ensures that listeners for `event` are only **_registered_** once and are disabled correctly when specified. This is different from `.once`, which only **emits** once.
 
@@ -124,7 +127,7 @@ Ensures that listeners for `event` are only **_registered_** once and are disabl
 emitter.only('foo', () => 'do stuff');
 ```
 
-### [.off](index.js#L167)
+### [.off](index.js#L170)
 
 Remove the given listener for `event`, or remove all registered listeners if `event` is undefined.
 
@@ -142,7 +145,7 @@ emitter.off('foo');
 emitter.off('foo', fn);
 ```
 
-### [.has](index.js#L224)
+### [.has](index.js#L227)
 
 Returns true if the emitter has registered listeners for `event`.
 
