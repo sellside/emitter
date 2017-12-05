@@ -24,8 +24,8 @@ class Emitter {
    * Mixin methods from Emitter.
    *
    * ```js
-   * var Emitter = require('emitter');
-   * var obj = {};
+   * const Emitter = require('emitter');
+   * const obj = {};
    * Emitter.mixin(obj);
    * obj.on('status', console.log);
    * obj.emit('status', 'I emit!');
@@ -54,6 +54,8 @@ class Emitter {
 
   listeners(event) {
     if (!this._listeners) define(this, '_listeners', {});
+    if (!this._only) define(this, '_only', {});
+    if (!event) return;
     return this._listeners['$' + event] || (this._listeners['$' + event] = []);
   }
 
@@ -71,13 +73,10 @@ class Emitter {
    */
 
   on(event, fn) {
-    if (!this._only) define(this, '_only', {});
-    if (this._only[event]) {
-      this.off(event, fn);
+    if (this._only && this._only[event]) {
+      return this.only(event, fn);
     }
-
-    const listeners = this.listeners(event);
-    listeners.push(fn);
+    this.listeners(event).push(fn);
     return this;
   }
 
@@ -106,9 +105,9 @@ class Emitter {
   }
 
   /**
-   * Ensures that events for event `event` are only **registered**
-   * once and are disabled correctly when specified. This is
-   * different from `.once`, which only **emits** once.
+   * Ensures that listeners for `event` are only **_registered_** once
+   * and are disabled correctly when specified. This is different from
+   * `.once`, which only **emits** once.
    *
    * ```js
    * emitter.only('foo', () => 'do stuff');
@@ -122,6 +121,8 @@ class Emitter {
    */
 
   only(event, options, fn) {
+    this.listeners();
+
     if (typeof options === 'function') {
       fn = options;
       options = null;
@@ -131,36 +132,19 @@ class Emitter {
       define(this, '_first', true);
     }
 
-    if (!this._only) define(this, '_only', {});
-    if (!event) {
-      for (var key in this._only) {
-        this.off(key, this._only[key]);
-      }
-      this._only = {};
-      return this;
-    }
-
-    if (!this._only[event]) {
+    if (!fn || !event || !this._only[event]) {
       this.off(event);
+      if (!fn) return this;
     }
 
-    if (!fn) {
-      this.off(event);
-      delete this._only[event];
-      return this;
-    }
-
-    if (this._only[event]) {
-      if (this._first !== true) {
-        this.off(event, this._only[event]);
-      } else {
-        fn = this._only[event];
-        this.off(event);
-      }
+    const existing = this._only[event];
+    if (existing) {
+      if (this._first === true) return this;
+      this.off(event, existing);
     }
 
     this._only[event] = fn;
-    this.on(event, fn);
+    this.listeners(event).push(fn);
     return this;
   }
 
@@ -181,17 +165,19 @@ class Emitter {
    */
 
   off(event, fn) {
-    if (!this._listeners) define(this, '_listeners', {});
+    this.listeners();
 
     // remove all listeners
     if (!event) {
       this._listeners = {};
+      this._only = {};
       return this;
     }
 
     // remove all listeners for "event"
     if (!fn) {
       this._listeners['$' + event] = [];
+      this._only['$' + event] = [];
       return this;
     }
 
