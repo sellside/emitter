@@ -24,8 +24,14 @@
     "mocha": "^4.0.1"
   },
   "keywords": [
+    "",
     "emitter",
     "event",
+    "event-emitter",
+    "events",
+    "fire",
+    "listener",
+    "listeners",
     "sellside"
   ],
   "verb": {
@@ -37,6 +43,13 @@
     "plugins": [
       "gulp-format-md"
     ],
+    "related": {
+      "list": [
+        "breakdance",
+        "micromatch",
+        "snapdragon"
+      ]
+    },
     "lint": {
       "reflinks": true
     }
