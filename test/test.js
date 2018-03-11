@@ -11,6 +11,13 @@ describe('Emitter', function() {
       emitter.on('foo', cb);
       emitter.emit('foo');
     });
+
+    it('should extend Emitter', function(cb) {
+      class Foo extends Emitter {};
+      let emitter = new Foo();
+      emitter.on('foo', cb);
+      emitter.emit('foo');
+    });
   });
 
   describe('mixin', function() {
@@ -21,9 +28,9 @@ describe('Emitter', function() {
       proto.emit('something');
     });
 
-    it('should mixin using Emitter.mixin()', function(callback) {
+    it('should work without new', function(callback) {
       let proto = {};
-      Emitter.mixin(proto);
+      Emitter(proto);
       proto.on('something', callback);
       proto.emit('something');
     });

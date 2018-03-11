@@ -16,29 +16,6 @@
  */
 
 class Emitter {
-  constructor(obj) {
-    if (obj) return mixin(obj);
-  }
-
-  /**
-   * Mixin methods from Emitter.
-   *
-   * ```js
-   * const Emitter = require('emitter');
-   * const obj = {};
-   * Emitter.mixin(obj);
-   * obj.on('status', console.log);
-   * obj.emit('status', 'I emit!');
-   * ```
-   * @name Emitter#mixin
-   * @param {Object} `obj`
-   * @return {Object}
-   * @api public
-   */
-
-  static mixin(obj) {
-    return new Emitter(obj);
-  }
 
   /**
    * Return the array of registered listeners for `event`.
@@ -264,11 +241,22 @@ function removeListeners(fn, listeners) {
  * Mixin emitter properties.
  */
 
-function mixin(obj) {
-  const ctor = obj.constructor;
-  Object.setPrototypeOf(obj, Emitter.prototype);
-  if (ctor) define(obj, 'constructor', ctor);
-  return obj;
+function mixin(target) {
+  if (!target) target = {};
+  const emitter = new Emitter();
+  copy(target, emitter, Object.getOwnPropertyNames(Emitter.prototype));
+  copy(target, emitter, Object.keys(emitter));
+  return target;
+}
+
+function copy(target, provider, keys) {
+  for (const key of keys) {
+    if (typeof provider[key] === 'function') {
+      define(target, key, provider[key].bind(provider));
+    } else {
+      define(target, key, provider[key]);
+    }
+  }
 }
 
 function define(obj, key, val) {
@@ -283,4 +271,4 @@ function define(obj, key, val) {
  * Expose `Emitter`
  */
 
-module.exports = Emitter;
+module.exports = mixin;
